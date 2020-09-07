@@ -35,6 +35,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Update product visibility card component - #679 by @AlicjaSzu
 - Update savebar design - #690 by @dominik-zeglen
 - Add metadata to orders - #688 by @dominik-zeglen
+- Restyle side menu - #697 by @dominik-zeglen
 
 ## 2.10.1
 

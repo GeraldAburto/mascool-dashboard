@@ -190,7 +190,7 @@
     "check-strict-null-errors": "tsc --noEmit --strictNullChecks | node scripts/count-strict-null-check-errors.js",
     "generate-component": "plop --plopfile .plop/plopfile.js",
     "start:dev": "webpack-dev-server --open -d",
-    "start": "webpack-dev-server -p --port $PORT --host 0.0.0.0",
+    "start": "webpack-dev-server -p --port $PORT",
     "storybook": "start-storybook -p 3000 -c src/storybook/",
     "build-storybook": "build-storybook -c src/storybook/ -o build/storybook",
     "test": "jest src/",

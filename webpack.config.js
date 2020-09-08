@@ -26,7 +26,6 @@ const dashboardBuildPath = "build/dashboard/";
 module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
   const port = process.env.PORT || 9000;
-  console.log(devMode, port, argv.port);
 
   let fileLoaderPath;
   let output;

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
-const CheckerPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -11,11 +10,6 @@ const resolve = path.resolve.bind(path, __dirname);
 
 const pathsPlugin = new TsconfigPathsPlugin({
   configFile: "./tsconfig.json"
-});
-
-const checkerPlugin = new CheckerPlugin({
-  eslint: true,
-  reportFiles: ["src/**/*.{ts,tsx}"]
 });
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   filename: "index.html",
@@ -31,6 +25,7 @@ const dashboardBuildPath = "build/dashboard/";
 
 module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
+  const port = process.env.PORT || 9000;
 
   let fileLoaderPath;
   let output;
@@ -63,10 +58,10 @@ module.exports = (env, argv) => {
       compress: true,
       contentBase: path.join(__dirname, dashboardBuildPath),
       historyApiFallback: true,
-      hot: true,
-      port: 9000
+      hot: devMode,
+      port
     },
-    devtool: "sourceMap",
+    devtool: "eval",
     entry: {
       dashboard: "./src/index.tsx"
     },
@@ -98,7 +93,7 @@ module.exports = (env, argv) => {
       splitChunks: false
     },
     output,
-    plugins: [checkerPlugin, environmentPlugin, htmlWebpackPlugin],
+    plugins: [environmentPlugin, htmlWebpackPlugin],
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       plugins: [pathsPlugin]

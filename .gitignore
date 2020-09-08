@@ -22,6 +22,7 @@
 *.log
 *.pyc
 *.mo
+.env
 local_settings.py
 __pycache__/
 build/
